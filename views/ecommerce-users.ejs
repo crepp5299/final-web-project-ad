@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+        
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <!-- Image Logo here -->
+                        <!--<a href="index.html" class="logo">-->
+                            <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                            <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                        <!--</a>-->
+                    </div>
+                </div>
+
+            <% include partials/menu %>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="page-title">Khách hàng</h4>
+                                <ol class="breadcrumb">
+                                    <li><a href="#">Ubold</a></li>
+                                    <li><a href="#">eCommerce</a></li>
+                                    <li class="active">Khách hàng</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                        	<div class="col-lg-12">
+                        		<div class="card-box">
+                        			<div class="row">
+			                        	<div class="col-sm-8">
+			                        		<form role="form">
+			                                    <div class="form-group contact-search m-b-30">
+			                                    	<input type="text" id="search" class="form-control" placeholder="Search...">
+			                                        <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
+			                                    </div> <!-- form-group -->
+			                                </form>
+			                        	</div>
+			                        	<div class="col-sm-4">
+			                        		 <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" 
+			                                                    	data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Tìm</a>
+			                        	</div>
+			                        </div>
+			                        
+                        			<div class="table-responsive">
+                                        <table class="table table-hover mails m-0 table table-actions-bar">
+                                        	<thead>
+												<tr>
+													<th>
+														<div class="checkbox checkbox-primary checkbox-single m-r-15">
+                                                            <input id="action-checkbox" type="checkbox">
+                                                            <label for="action-checkbox"></label>
+                                                        </div>
+													</th>
+													<th>Tên</th>
+													<th>Email</th>
+                                                    <th>Địa chỉ</th>
+													<th>SĐT</th>
+													<th style="min-width: 90px;">Chức năng</th>
+												</tr>
+											</thead>
+											
+                                            <tbody>
+                                                <% allUser.forEach(function(user){ %>
+                                                <tr>
+                                                    <td>
+                                                        <div class="checkbox checkbox-primary m-r-15">
+                                                            <input id="checkbox2" type="checkbox">
+                                                            <label for="checkbox2"></label>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <%= user.firstName %> <%= user.lastName %>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <a href="#"><%= user.email %></a>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= user.address %>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <%= user.phoneNumber%>
+                                                    </td>
+                                                    <td>
+                                                    	<a href="edit-user" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    	<a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                                    </td>
+                                                    
+                                                </tr>    
+                                                <% }); %>                                      
+                                            </tbody>
+                                        </table>
+                                    </div>
+                        		</div>
+                                
+                            </div> <!-- end col -->
+
+                            
+                        </div>
+
+                        
+                        
+                        
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            
+            
+            <!-- Modal -->
+			<div id="custom-modal" class="modal-demo">
+			    <button type="button" class="close" onclick="Custombox.close();">
+			        <span>&times;</span><span class="sr-only">Close</span>
+			    </button>
+			    <h4 class="custom-modal-title">Add Seller</h4>
+			    <div class="custom-modal-text text-left">
+			        <form role="form">
+			        	<div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="position">Contact number</label>
+                            <input type="text" class="form-control" id="position" placeholder="Enter number">
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-default waves-effect waves-light">Save</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
+                    </form>
+			    </div>
+			</div>
+            
+            
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar nicescroll">
+                <h4 class="text-center">Chat</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+                                <span class="name">Chadengle</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-2.jpg" alt="">
+                                </div>
+                                <span class="name">Tomaslau</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-3.jpg" alt="">
+                                </div>
+                                <span class="name">Stillnotdavid</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+                                <span class="name">Kurafire</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-5.jpg" alt="">
+                                </div>
+                                <span class="name">Shahedk</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-6.jpg" alt="">
+                                </div>
+                                <span class="name">Adhamdannaway</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-7.jpg" alt="">
+                                </div>
+                                <span class="name">Ok</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-8.jpg" alt="">
+                                </div>
+                                <span class="name">Arashasghari</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-9.jpg" alt="">
+                                </div>
+                                <span class="name">Joshaustin</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-10.jpg" alt="">
+                                </div>
+                                <span class="name">Sortino</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>  
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+    
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+        
+        <!-- Modal-Effect -->
+        <script src="assets/plugins/custombox/js/custombox.min.js"></script>
+        <script src="assets/plugins/custombox/js/legacy.min.js"></script>
+    
+    </body>
+</html>

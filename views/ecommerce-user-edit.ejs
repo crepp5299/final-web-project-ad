@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+        
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <!-- Image Logo here -->
+                        <!--<a href="index.html" class="logo">-->
+                            <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                            <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                        <!--</a>-->
+                    </div>
+                </div>
+
+            <% include partials/menu %>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+						<div class="row">
+							<div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                                    <ul class="dropdown-menu drop-menu-right" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+
+								<h4 class="page-title">Sửa thông tin taì khoản</h4>
+								<ol class="breadcrumb">
+									<li>
+										<a href="#">Ubold</a>
+									</li>
+                                    <li>
+										<a href="#">Cửa hàng</a>
+									</li>
+									<li class="active">
+										Thêm/Sửa
+									</li>
+								</ol>
+							</div>
+						</div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Thông tin</b></h5>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Họ<span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" rows="1" placeholder="Nhập họ ..."> <%= info.ho %> </textarea>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Tên <span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" rows="1" placeholder="Nhập tên..."> <%= info.ten %> </textarea>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Địa chỉ <span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" rows="5" placeholder="Nhập địa chỉ..."><%= info.diachi %></textarea>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Email </label>
+                                                        <textarea class="form-control" rows="3" placeholder="Nhập email : vd shivaluma@gmail.com"><%= info.email %></textarea>
+                                                    </div>
+                                                    
+                                                    <div class="form-group m-b-20">
+                                                        <label>Số điện thoại </label>
+                                                        <textarea class="form-control" rows="3" placeholder="VD : 113""><%= info.sdt %></textarea>
+                                                    </div>
+                                                    
+                                                    <div class="form-group m-b-20">
+                                                        <select class="form-control">
+                                                            
+                                                            <optgroup label="Giơí tính">
+                                                                <option value="SH1" selected>Nam</option>
+                                                                <option value="SH2">Nữ</option>
+                                                                <option value="SH3">Khác</option>
+                                                            </optgroup>
+                                                           
+
+                                                        </select>
+                                                    </div>
+                                                        
+
+                                                    
+
+                                                    
+
+
+                                                </div>
+                                            </div>
+
+
+                                            
+
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <div class="text-center p-20">
+                                                     <button type="button" class="btn w-sm btn-white waves-effect">Huỷ</button>
+                                                     <button type="button" class="btn w-sm btn-default waves-effect waves-light">Lưu</button>
+			                                         <button type="button" class="btn w-sm btn-danger waves-effect waves-light">Xoá</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            
+            
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar nicescroll">
+                <h4 class="text-center">Chat</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+                                <span class="name">Chadengle</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-2.jpg" alt="">
+                                </div>
+                                <span class="name">Tomaslau</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-3.jpg" alt="">
+                                </div>
+                                <span class="name">Stillnotdavid</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+                                <span class="name">Kurafire</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-5.jpg" alt="">
+                                </div>
+                                <span class="name">Shahedk</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-6.jpg" alt="">
+                                </div>
+                                <span class="name">Adhamdannaway</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-7.jpg" alt="">
+                                </div>
+                                <span class="name">Ok</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-8.jpg" alt="">
+                                </div>
+                                <span class="name">Arashasghari</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-9.jpg" alt="">
+                                </div>
+                                <span class="name">Joshaustin</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-10.jpg" alt="">
+                                </div>
+                                <span class="name">Sortino</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>  
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+    
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script src="assets/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+
+        <script>
+            jQuery(document).ready(function() {
+                // Select2
+                $(".select2").select2();
+            });
+        </script>
+
+
+
+
+    </body>
+</html>

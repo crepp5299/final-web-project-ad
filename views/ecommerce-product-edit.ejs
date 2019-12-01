@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+        
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <!-- Image Logo here -->
+                        <!--<a href="index.html" class="logo">-->
+                            <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                            <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                        <!--</a>-->
+                    </div>
+                </div>
+
+            <% include partials/menu %>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+						<div class="row">
+							<div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                                    <ul class="dropdown-menu drop-menu-right" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+
+								<h4 class="page-title">Thêm/ Sửa sản phẩm</h4>
+								<ol class="breadcrumb">
+									<li>
+										<a href="#">Ubold</a>
+									</li>
+                                    <li>
+										<a href="#">Cửa hàng</a>
+									</li>
+									<li class="active">
+										Thêm/Sửa
+									</li>
+								</ol>
+							</div>
+						</div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Thông tin</b></h5>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Tên sản phẩ m<span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" placeholder="e.g : Apple iMac">
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Tên khác <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" placeholder="e.g : Apple iMac">
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Thông tin sản phẩm <span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" rows="5" placeholder="Please enter description"></textarea>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Chất liệu sản phẩm</label>
+                                                        <textarea class="form-control" rows="3" placeholder="Please enter summary"></textarea>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Phân loại <span class="text-danger">*</span></label>
+                                                        <select class="form-control select2">
+                                                            <option>Chọn</option>
+                                                            <optgroup label="Giơí tính">
+                                                                <option value="SH1">Shopping 1</option>
+                                                                <option value="SH2">Shopping 2</option>
+                                                                <option value="SH3">Shopping 3</option>
+                                                                <option value="SH4">Shopping 4</option>
+                                                            </optgroup>
+                                                            <optgroup label="Loại">
+                                                                <option value="CRM1">Crm 1</option>
+                                                                <option value="CRM2">Crm 2</option>
+                                                                <option value="CRM3">Crm 3</option>
+                                                                <option value="CRM4">Crm 4</option>
+                                                            </optgroup>
+                                                            <optgroup label="Kiêủ thời trang">
+                                                                <option value="E1">eCommerce 1</option>
+                                                                <option value="E2">eCommerce 2</option>
+                                                                <option value="E3">eCommerce 3</option>
+                                                                <option value="E4">eCommerce 4</option>
+                                                            </optgroup>
+
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Giá <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" value="$ 562.56">
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label class="m-b-15">Trạng thái <span class="text-danger">*</span></label>
+                                                        <br/>
+                                                        <div class="radio radio-inline">
+                                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                                            <label for="inlineRadio1"> Hiện </label>
+                                                        </div>
+                                                        <div class="radio radio-inline">
+                                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                                            <label for="inlineRadio2"> Ẩn </label>
+                                                        </div>
+                                                        <div class="radio radio-inline">
+                                                            <input type="radio" id="inlineRadio3" value="option3" name="radioInline">
+                                                            <label for="inlineRadio3"> Nháp </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group m-b-10">
+                                                        <label>Bình luận</label>
+                                                        <textarea class="form-control" rows="3" placeholder="Please enter summary"></textarea>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-6">
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Thông tin quảng cáo</b></h5>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Tiêu đề</label>
+                                                        <input type="text" class="form-control" placeholder="Enter title">
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Từ khoá</label>
+                                                        <input type="text" class="form-control" placeholder="Enter keywords">
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Mô tả </label>
+                                                        <textarea class="form-control" rows="5" placeholder="Please enter description"></textarea>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-30"><b>Ảnh sản phẩm</b></h5>
+
+                                                    <div class="table-box m-b-30">
+                                                        <div class="table-detail">
+                                                            <img src="assets/images/products/iphone.jpg" class="thumb-md" alt="img">
+                                                        </div>
+                                                        <div class="table-detail">
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio4" value="option1" name="radioInline2" checked="">
+                                                                <label for="inlineRadio4"> Ảnh chính </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio5" value="option2" name="radioInline2">
+                                                                <label for="inlineRadio5"> Ảnh bià </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio6" value="option3" name="radioInline2">
+                                                                <label for="inlineRadio6"> Gallary </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="table-detail table-actions-bar" style="min-width: 60px;">
+                                                            <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    	    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="table-box m-b-30">
+                                                        <div class="table-detail">
+                                                            <img src="assets/images/products/imac.jpg" class="thumb-md" alt="img">
+                                                        </div>
+                                                        <div class="table-detail">
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio7" value="option1" name="radioInline3">
+                                                                <label for="inlineRadio7"> Ảnh chính </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio8" value="option2" name="radioInline3" checked="">
+                                                                <label for="inlineRadio8"> Thumbnail </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio9" value="option3" name="radioInline3">
+                                                                <label for="inlineRadio9"> Album </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="table-detail table-actions-bar" style="min-width: 60px;">
+                                                            <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    	    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="table-box m-b-30">
+                                                        <div class="table-detail">
+                                                            <img src="assets/images/products/samsung.jpg" class="thumb-md" alt="img">
+                                                        </div>
+                                                        <div class="table-detail">
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio10" value="option1" name="radioInline4">
+                                                                <label for="inlineRadio10"> Ảnh chính </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio11" value="option2" name="radioInline4">
+                                                                <label for="inlineRadio11"> Thumbnail </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio12" value="option3" name="radioInline4" checked="">
+                                                                <label for="inlineRadio12"> Gallary </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="table-detail table-actions-bar" style="min-width: 60px;">
+                                                            <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    	    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="table-box m-b-30">
+                                                        <div class="table-detail">
+                                                            <img src="assets/images/products/macbook.jpg" class="thumb-md" alt="img">
+                                                        </div>
+                                                        <div class="table-detail">
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio13" value="option1" name="radioInline5" checked="">
+                                                                <label for="inlineRadio13"> Ảnh chính </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio14" value="option2" name="radioInline5">
+                                                                <label for="inlineRadio14"> Thumbnail </label>
+                                                            </div>
+                                                            <div class="radio radio-inline">
+                                                                <input type="radio" id="inlineRadio15" value="option3" name="radioInline5">
+                                                                <label for="inlineRadio15"> Gallary </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="table-detail table-actions-bar" style="min-width: 60px;">
+                                                            <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    	    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="text-center m-t-30">
+                                                        <div class="fileupload btn btn-purple btn-md w-md waves-effect waves-light">
+                                                            <span><i class="ion-upload m-r-5"></i>Upload</span>
+                                                            <input type="file" class="upload">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <div class="text-center p-20">
+                                                     <button type="button" class="btn w-sm btn-white waves-effect">Huỷ</button>
+                                                     <button type="button" class="btn w-sm btn-default waves-effect waves-light">Lưu</button>
+			                                         <button type="button" class="btn w-sm btn-danger waves-effect waves-light">Xoá</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            
+            
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar nicescroll">
+                <h4 class="text-center">Chat</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+                                <span class="name">Chadengle</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-2.jpg" alt="">
+                                </div>
+                                <span class="name">Tomaslau</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-3.jpg" alt="">
+                                </div>
+                                <span class="name">Stillnotdavid</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+                                <span class="name">Kurafire</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-5.jpg" alt="">
+                                </div>
+                                <span class="name">Shahedk</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-6.jpg" alt="">
+                                </div>
+                                <span class="name">Adhamdannaway</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-7.jpg" alt="">
+                                </div>
+                                <span class="name">Ok</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-8.jpg" alt="">
+                                </div>
+                                <span class="name">Arashasghari</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-9.jpg" alt="">
+                                </div>
+                                <span class="name">Joshaustin</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-10.jpg" alt="">
+                                </div>
+                                <span class="name">Sortino</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>  
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+    
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script src="assets/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+
+        <script>
+            jQuery(document).ready(function() {
+                // Select2
+                $(".select2").select2();
+            });
+        </script>
+
+
+
+
+    </body>
+</html>

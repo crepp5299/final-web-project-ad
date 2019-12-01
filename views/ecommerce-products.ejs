@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+        
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <!-- Image Logo here -->
+                        <!--<a href="index.html" class="logo">-->
+                            <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                            <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                        <!--</a>-->
+                    </div>
+                </div>
+
+            <% include partials/menu %>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+						<div class="row">
+							<div class="col-sm-12">
+								<h4 class="page-title">Products</h4>
+								<ol class="breadcrumb">
+									<li>
+										<a href="#">Ubold</a>
+									</li>
+									<li class="active">
+										Products
+									</li>
+								</ol>
+							</div>
+						</div>
+
+                        <!-- SECTION FILTER
+                        ================================================== -->
+                        <div class="row m-t-10 m-b-10">
+
+                            <div class="col-sm-6">
+                                <form role="form">
+                                    <div class="form-group contact-search m-b-0">
+                                        <input type="text" id="search" class="form-control product-search" placeholder="Search here...">
+                                        <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
+                                    </div> <!-- form-group -->
+                                </form>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="h5 m-0 text-right">
+                                    <label class="vertical-middle m-r-10">Sort By:</label>
+                                    <div class="btn-group vertical-middle" data-toggle="buttons">
+                                         <label class="btn btn-default btn-md waves-effect active">
+                                            <input type="radio" autocomplete="off" checked=""> Status
+                                         </label>
+                                         <label class="btn btn-default btn-md waves-effect">
+                                            <input type="radio" autocomplete="off"> Type
+                                         </label>
+                                         <label class="btn btn-default btn-md waves-effect">
+                                            <input type="radio" autocomplete="off"> Name
+                                         </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="m-b-15">
+                                <% productss.forEach(function(item) { %>   
+                                <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
+                                    <div class="product-list-box thumb">
+                                        <a href="javascript:void(0);" class="image-popup" title="Screenshot-1">
+                                            <img src="<%= item.image %>" class="thumb-img" alt="work-thumbnail">
+                                        </a>
+
+                                        <div class="product-action">
+                                            <a href="#" class="btn btn-success btn-sm"><i class="md md-mode-edit"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm"><i class="md md-close"></i></a>
+                                        </div>
+
+                                        <div class="price-tag">
+                                            <%= item.price %>
+                                        </div>
+                                        <div class="detail">
+                                            <h4 class="m-t-0"><a href="" class="text-dark"><%= item.name %></a> </h4>
+                                            <div class="rating">
+                                                <ul class="list-inline">
+                                                    <li><a class="fa fa-star" href=""></a></li>
+                                                    <li><a class="fa fa-star" href=""></a></li>
+                                                    <li><a class="fa fa-star" href=""></a></li>
+                                                    <li><a class="fa fa-star" href=""></a></li>
+                                                    <li><a class="fa fa-star-o" href=""></a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="m-0"> <span class="text-muted"> Stock :<%= item.stock %><span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                                
+
+
+
+
+                            </div>
+                        </div> <!-- End row -->
+
+
+
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            
+            
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar nicescroll">
+                <h4 class="text-center">Chat</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+                                <span class="name">Chadengle</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-2.jpg" alt="">
+                                </div>
+                                <span class="name">Tomaslau</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-3.jpg" alt="">
+                                </div>
+                                <span class="name">Stillnotdavid</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+                                <span class="name">Kurafire</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-5.jpg" alt="">
+                                </div>
+                                <span class="name">Shahedk</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-6.jpg" alt="">
+                                </div>
+                                <span class="name">Adhamdannaway</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-7.jpg" alt="">
+                                </div>
+                                <span class="name">Ok</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-8.jpg" alt="">
+                                </div>
+                                <span class="name">Arashasghari</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-9.jpg" alt="">
+                                </div>
+                                <span class="name">Joshaustin</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="assets/images/users/avatar-10.jpg" alt="">
+                                </div>
+                                <span class="name">Sortino</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>  
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+    
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+    </body>
+</html>
