@@ -19,7 +19,3 @@ exports.getLogin = (req, res, next) => {
     title: "Đăng nhập"
   });
 };
-
-exports.postLogin = (req, res, next) => {
-  res.session.is;
-};
