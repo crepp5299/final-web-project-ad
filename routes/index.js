@@ -3,10 +3,12 @@ const userController = require("../controller/user");
 var router = express.Router();
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
-  res.render("index", { title: "Trang chính" });
-});
+router.get("/", userController.getIndex);
 
 router.get("/login", userController.getLogin);
+
+router.post("/login", userController.postLogin);
+
+router.get("/create-account", userController.getSignUp);
 
 module.exports = router;

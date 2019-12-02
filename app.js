@@ -31,7 +31,7 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
+app.use(flash());
 app.use(
   session({
     secret: "secret",
@@ -39,6 +39,7 @@ app.use(
     resave: true
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger("dev"));
@@ -58,6 +59,9 @@ app.use("/ecommerce-sellers.html", esellersRouter);
 app.use("/ecommerce-products.html", eproductRouter);
 app.use("/ecommerce-product-edit.html", eeditproductRouter);
 app.use("/ecommerce-product-detail.html", eproductdetailRouter);
+
+require("./config/passport")(passport);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
