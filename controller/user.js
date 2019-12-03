@@ -45,8 +45,19 @@ exports.getLogout = (req, res, next) => {
 };
 
 exports.getSignUp = (req, res, next) => {
+  const message = req.flash("error")[0];
+  console.log(message);
+  console.log(req.flash("success")[0]);
   res.render("page-register", {
-    title: "Thêm tài khoản"
-    //message: `${message}`
+    title: "Thêm tài khoản",
+    message: `${message}`
   });
+};
+
+exports.postSignUp = (req, res, next) => {
+  passport.authenticate("local-signup", {
+    successReturnToOrRedirect: "/users",
+    failureRedirect: "/create-account",
+    failureFlash: true
+  })(req, res, next);
 };

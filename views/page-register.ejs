@@ -27,6 +27,7 @@
                   type="email"
                   required=""
                   placeholder="Email"
+                  name="email"
                 />
               </div>
             </div>
@@ -43,6 +44,29 @@
               </div>
             </div>
 
+            <div class="form-group ">
+              <div class="col-xs-12">
+                <input
+                  class="form-control"
+                  type="text"
+                  required=""
+                  placeholder="FirstName"
+                  name="firstName"
+                />
+              </div>
+            </div>
+            <div class="form-group ">
+              <div class="col-xs-12">
+                <input
+                  class="form-control"
+                  type="text"
+                  required=""
+                  placeholder="LastName"
+                  name="lastName"
+                />
+              </div>
+            </div>
+
             <div class="form-group">
               <div class="col-xs-12">
                 <input
@@ -54,6 +78,14 @@
                 />
               </div>
             </div>
+            <%if (message != "undefined") { %>
+            <div
+              class="form-group form-control error"
+              style="background-color: #FFCCCC; font-weight: bold; color : rgb(210, 29, 29)"
+            >
+              <%= message %>
+            </div>
+            <% } %>
 
             <div class="form-group text-center m-t-40">
               <div class="col-xs-12">

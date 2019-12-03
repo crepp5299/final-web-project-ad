@@ -1,4 +1,4 @@
-const user = require("../model/user");
+const User = require("../model/user");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 
@@ -8,10 +8,9 @@ module.exports = passport => {
   });
 
   passport.deserializeUser((id, done) => {
-    user
-      .findOne({
-        _id: id
-      })
+    User.findOne({
+      _id: id
+    })
       .then(user => {
         done(null, user);
       })
@@ -23,7 +22,7 @@ module.exports = passport => {
   passport.use(
     "local-signin",
     new LocalStrategy((username, password, done) => {
-      user.findOne({ username: username }, (err, user) => {
+      User.findOne({ username: username }, (err, user) => {
         if (err) {
           return done(err);
         }
@@ -47,6 +46,54 @@ module.exports = passport => {
             });
           }
           return done(null, user);
+        });
+      });
+    })
+  );
+  passport.use(
+    "local-signup",
+    new LocalStrategy({ passReqToCallback: true }, function(
+      req,
+      username,
+      password,
+      done
+    ) {
+      User.findOne({ username: username }, function(err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (user) {
+          return done(null, false, {
+            message: "Tên đăng nhập đã tồn tại!"
+          });
+        }
+
+        if (password.length <= 6) {
+          return done(null, false, {
+            message: "Mật khẩu phải trên 6 ký tự!"
+          });
+        }
+
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(String(req.body.email).toLowerCase())) {
+          return done(null, false, {
+            message: "Địa chỉ email không hợp lệ!"
+          });
+        }
+
+        bcrypt.hash(password, 12).then(hashPassword => {
+          const newUser = new User({
+            username: username,
+            password: hashPassword,
+            email: req.body.email,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName
+          });
+          // save the user
+          newUser.save(function(err) {
+            if (err) return done(err);
+            return done(null, newUser);
+          });
         });
       });
     })
