@@ -8,7 +8,8 @@ exports.getUser = (req, res, next) => {
       .then(users => {
         res.render("ecommerce-users", {
           title: "Quản lý tài khoản khách hàng",
-          allUser: users
+          allUser: users,
+          user: req.user
         });
       })
       .catch(err => {
@@ -21,7 +22,10 @@ exports.getUser = (req, res, next) => {
 
 exports.getIndex = (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.render("index", { title: "Trang chính" });
+    res.render("index", {
+      title: "Trang chính",
+      user: req.user
+    });
   } else {
     res.redirect("/login");
   }
@@ -31,7 +35,8 @@ exports.getLogin = (req, res, next) => {
   const message = req.flash("error")[0];
   res.render("page-login", {
     title: "Đăng nhập",
-    message: `${message}`
+    message: `${message}`,
+    user: req.user
   });
 };
 
@@ -55,7 +60,8 @@ exports.getSignUp = (req, res, next) => {
     console.log(req.flash("success")[0]);
     res.render("page-register", {
       title: "Thêm tài khoản",
-      message: `${message}`
+      message: `${message}`,
+      user: req.user
     });
   } else {
     res.redirect("/login");
@@ -79,7 +85,8 @@ exports.getEditUser = (req, res, next) => {
     .then(user => {
       res.render("ecommerce-user-edit", {
         title: "Thay đổi thông tin người dùng",
-        info: user
+        info: user,
+        user: req.user
       });
     })
     .catch(err => {

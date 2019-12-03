@@ -30,10 +30,10 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  isAdministrator: {
-    type: String,
-    required: false,
-    default: false
+  role: {
+    type: Number,
+    required: true,
+    default: 0
   }
 });
 

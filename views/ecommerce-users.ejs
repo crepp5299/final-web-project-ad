@@ -88,7 +88,8 @@
 											</thead>
 											
                                             <tbody>
-                                                <% allUser.forEach(function(user){ %>
+                                                <% allUser.forEach(function(user){ 
+                                                    if(user.role < 2){%>
                                                 <tr>
                                                     <td>
                                                         <div class="checkbox checkbox-primary m-r-15">
@@ -122,7 +123,7 @@
                                                     </td>
                                                     
                                                 </tr>    
-                                                <% }); %>                                      
+                                                <% }}); %>                                      
                                             </tbody>
                                         </table>
                                     </div>

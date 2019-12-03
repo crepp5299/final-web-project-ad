@@ -32,6 +32,12 @@ module.exports = passport => {
           });
         }
 
+        if (user.role < 1) {
+          return done(null, false, {
+            message: "Tài khoản không đủ quyền hạn."
+          });
+        }
+
         bcrypt.compare(password, user.password, (err, result) => {
           if (err) {
             return done(err);
@@ -83,12 +89,17 @@ module.exports = passport => {
         }
 
         bcrypt.hash(password, 12).then(hashPassword => {
+          var role = 0;
+          if (req.body.isAdmin == "on") {
+            role = 1;
+          }
           const newUser = new User({
             username: username,
             password: hashPassword,
             email: req.body.email,
             firstName: req.body.firstName,
-            lastName: req.body.lastName
+            lastName: req.body.lastName,
+            role: role
           });
           // save the user
           newUser.save(function(err) {
