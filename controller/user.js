@@ -53,12 +53,12 @@ exports.getLogout = (req, res, next) => {
   res.redirect("/login");
 };
 
-exports.getSignUp = (req, res, next) => {
+exports.getAddAccount = (req, res, next) => {
   if (req.isAuthenticated()) {
     const message = req.flash("error")[0];
     console.log(message);
     console.log(req.flash("success")[0]);
-    res.render("page-register", {
+    res.render("add-account", {
       title: "Thêm tài khoản",
       message: `${message}`,
       user: req.user
@@ -68,10 +68,10 @@ exports.getSignUp = (req, res, next) => {
   }
 };
 
-exports.postSignUp = (req, res, next) => {
+exports.postAddAccount = (req, res, next) => {
   passport.authenticate("local-signup", {
-    successReturnToOrRedirect: "/users",
-    failureRedirect: "/create-account",
+    successReturnToOrRedirect: "/add-account",
+    failureRedirect: "/add-account",
     failureFlash: true
   })(req, res, next);
 };

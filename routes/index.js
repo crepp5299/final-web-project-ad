@@ -9,9 +9,9 @@ router.get("/login", userController.getLogin);
 
 router.post("/login", userController.postLogin);
 
-router.get("/create-account", userController.getSignUp);
+router.get("/add-account", userController.getAddAccount);
 
-router.post("/create-account", userController.postSignUp);
+router.post("/add-account", userController.postAddAccount);
 
 router.get("/edit-user/:userId", userController.getEditUser);
 
