@@ -17,4 +17,6 @@ router.get("/edit-user/:userId", userController.getEditUser);
 
 router.post("/edit-user/:userId", userController.postEditUser);
 
+router.get("/logout", userController.getLogout);
+
 module.exports = router;

@@ -3,16 +3,20 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 exports.getUser = (req, res, next) => {
-  Users.find()
-    .then(users => {
-      res.render("ecommerce-users", {
-        title: "Quản lý tài khoản khách hàng",
-        allUser: users
+  if (req.isAuthenticated()) {
+    Users.find()
+      .then(users => {
+        res.render("ecommerce-users", {
+          title: "Quản lý tài khoản khách hàng",
+          allUser: users
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  } else {
+    res.redirect("/login");
+  }
 };
 
 exports.getIndex = (req, res, next) => {
@@ -45,13 +49,17 @@ exports.getLogout = (req, res, next) => {
 };
 
 exports.getSignUp = (req, res, next) => {
-  const message = req.flash("error")[0];
-  console.log(message);
-  console.log(req.flash("success")[0]);
-  res.render("page-register", {
-    title: "Thêm tài khoản",
-    message: `${message}`
-  });
+  if (req.isAuthenticated()) {
+    const message = req.flash("error")[0];
+    console.log(message);
+    console.log(req.flash("success")[0]);
+    res.render("page-register", {
+      title: "Thêm tài khoản",
+      message: `${message}`
+    });
+  } else {
+    res.redirect("/login");
+  }
 };
 
 exports.postSignUp = (req, res, next) => {
@@ -80,9 +88,18 @@ exports.getEditUser = (req, res, next) => {
 };
 
 exports.postEditUser = (req, res, next) => {
-  passport.authenticate("local-edit", {
-    successReturnToOrRedirect: "/users",
-    failureRedirect: "/edit-user/:userId",
-    failureFlash: true
-  })(req, res, next);
+  const userId = req.params.userId;
+  Users.findOne({ _id: userId })
+    .then(user => {
+      (user.firstName = req.body.firstName),
+        (user.lastName = req.body.lastName),
+        (user.phoneNumber = req.body.phoneNumber),
+        (user.email = req.body.email),
+        (user.address = req.body.address);
+      user.save();
+      res.redirect("/users");
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
