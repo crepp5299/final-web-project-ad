@@ -7,7 +7,7 @@ exports.getUser = (req, res, next) => {
     Users.find()
       .then(users => {
         res.render("ecommerce-users", {
-          title: "Quản lý tài khoản khách hàng",
+          title: "Quản lý tài khoản",
           allUser: users,
           user: req.user
         });
