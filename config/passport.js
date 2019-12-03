@@ -32,12 +32,6 @@ module.exports = passport => {
           });
         }
 
-        if (user.role < 1) {
-          return done(null, false, {
-            message: "Tài khoản không đủ quyền hạn."
-          });
-        }
-
         bcrypt.compare(password, user.password, (err, result) => {
           if (err) {
             return done(err);
@@ -49,6 +43,11 @@ module.exports = passport => {
           if (!result) {
             return done(null, false, {
               message: "Sai tên đăng nhập hoặc mật khẩu."
+            });
+          }
+          if (user.role < 1) {
+            return done(null, false, {
+              message: "Tài khoản không đủ quyền hạn."
             });
           }
           return done(null, user);
