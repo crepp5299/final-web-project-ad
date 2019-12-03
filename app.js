@@ -18,7 +18,7 @@ mongoose.connect(urlConnect, { useNewUrlParser: true }, err => {
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var usereditRouter = require("./routes/edit-user");
+//var usereditRouter = require("./routes/edit-user");
 var edashboardRouter = require("./routes/e-dashboard");
 var eeditproductRouter = require("./routes/e-edit-product");
 var eordersRouter = require("./routes/e-orders");
@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/index.html", indexRouter);
 app.use("/users", usersRouter);
-app.use("/edit-user", usereditRouter);
+//app.use("/edit-user", usereditRouter);
 app.use("/ecommerce-dashboard.html", edashboardRouter);
 app.use("/ecommerce-summary.html", esummaryRouter);
 app.use("/ecommerce-orders.html", eordersRouter);

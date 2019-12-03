@@ -77,7 +77,8 @@
                                                             <input id="action-checkbox" type="checkbox">
                                                             <label for="action-checkbox"></label>
                                                         </div>
-													</th>
+                                                    </th>
+                                                    <th>User Name</th>                                            
 													<th>Tên</th>
 													<th>Email</th>
                                                     <th>Địa chỉ</th>
@@ -94,6 +95,10 @@
                                                             <input id="checkbox2" type="checkbox">
                                                             <label for="checkbox2"></label>
                                                         </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= user.username %>
                                                     </td>
                                                     
                                                     <td>
@@ -112,7 +117,7 @@
                                                         <%= user.phoneNumber%>
                                                     </td>
                                                     <td>
-                                                    	<a href="edit-user" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    	<a href="edit-user/<%= user._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
                                                     	<a href="#" class="table-action-btn"><i class="md md-close"></i></a>
                                                     </td>
                                                     
@@ -270,23 +275,22 @@
         </script>
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
-
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
-        
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/wow.min.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
+        <script src="/assets/js/jquery.core.js"></script>
+        <script src="/assets/js/jquery.app.js"></script>
+        /
         <!-- Modal-Effect -->
-        <script src="assets/plugins/custombox/js/custombox.min.js"></script>
-        <script src="assets/plugins/custombox/js/legacy.min.js"></script>
+        <script src="/assets/plugins/custombox/js/custombox.min.js"></script>
+        <script src="/assets/plugins/custombox/js/legacy.min.js"></script>
     
     </body>
 </html>

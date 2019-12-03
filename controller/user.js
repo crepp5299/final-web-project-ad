@@ -61,3 +61,28 @@ exports.postSignUp = (req, res, next) => {
     failureFlash: true
   })(req, res, next);
 };
+
+exports.getEditUser = (req, res, next) => {
+  const message = req.flash("error")[0];
+  console.log(message);
+  console.log(req.flash("success")[0]);
+  const userId = req.params.userId;
+  Users.findOne({ _id: userId })
+    .then(user => {
+      res.render("ecommerce-user-edit", {
+        title: "Thay đổi thông tin người dùng",
+        info: user
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+exports.postEditUser = (req, res, next) => {
+  passport.authenticate("local-edit", {
+    successReturnToOrRedirect: "/users",
+    failureRedirect: "/edit-user/:userId",
+    failureFlash: true
+  })(req, res, next);
+};

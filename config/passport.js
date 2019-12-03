@@ -50,6 +50,30 @@ module.exports = passport => {
       });
     })
   );
+
+  passport.use(
+    "local-edit",
+    new LocalStrategy((_id, done) => {
+      User.findOne({ _id: _id }).then(user => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(String(req.body.email).toLowerCase())) {
+          return done(null, false, {
+            message: "Địa chỉ email không hợp lệ!"
+          });
+        }
+        (user.firstName = req.body.firstName),
+          (user.lastName = req.body.lastName),
+          (user.phoneNumber = req.body.phoneNumber),
+          (user.email = req.body.email),
+          (user.address = req.body.address);
+        user.save(function(err) {
+          if (err) return done(err);
+          return done(null, newUser);
+        });
+      });
+    })
+  );
+
   passport.use(
     "local-signup",
     new LocalStrategy({ passReqToCallback: true }, function(

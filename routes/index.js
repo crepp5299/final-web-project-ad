@@ -13,4 +13,8 @@ router.get("/create-account", userController.getSignUp);
 
 router.post("/create-account", userController.postSignUp);
 
+router.get("/edit-user/:userId", userController.getEditUser);
+
+router.post("/edit-user/:userId", userController.postEditUser);
+
 module.exports = router;
