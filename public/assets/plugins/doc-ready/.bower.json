@@ -30,7 +30,7 @@
     "examples",
     "package.json",
     "component.json",
-    "index.html"
+    "/"
   ],
   "_release": "1.0.4",
   "_resolution": {

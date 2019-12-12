@@ -78,8 +78,6 @@ exports.postAddAccount = (req, res, next) => {
 
 exports.getEditUser = (req, res, next) => {
   const message = req.flash("error")[0];
-  console.log(message);
-  console.log(req.flash("success")[0]);
   const userId = req.params.userId;
   Users.findOne({ _id: userId })
     .then(user => {
@@ -109,4 +107,9 @@ exports.postEditUser = (req, res, next) => {
     .catch(err => {
       console.log(err);
     });
+};
+
+exports.deleteUser = (req, res, next) => {
+  const userId = req.params.userId;
+  Users.deleteOne({ _id: userId }).then(res.redirect("/users"));
 };

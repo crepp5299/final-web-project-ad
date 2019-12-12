@@ -13,9 +13,7 @@ router.get("/add-account", userController.getAddAccount);
 
 router.post("/add-account", userController.postAddAccount);
 
-router.get("/edit-user/:userId", userController.getEditUser);
-
-router.post("/edit-user/:userId", userController.postEditUser);
+router.get("/delete/:userId", userController.deleteUser);
 
 router.get("/logout", userController.getLogout);
 

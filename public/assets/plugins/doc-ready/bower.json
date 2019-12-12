@@ -30,6 +30,6 @@
     "examples",
     "package.json",
     "component.json",
-    "index.html"
+    "/"
   ]
 }
