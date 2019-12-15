@@ -13,8 +13,6 @@ router.get("/add-account", userController.getAddAccount);
 
 router.post("/add-account", userController.postAddAccount);
 
-router.get("/delete/:userId", userController.deleteUser);
-
 router.get("/logout", userController.getLogout);
 
 module.exports = router;

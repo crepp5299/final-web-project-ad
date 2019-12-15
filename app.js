@@ -51,7 +51,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("//", indexRouter);
 app.use("/users", usersRouter);
-//app.use("/edit-user", usereditRouter);
 app.use("/ecommerce-dashboard.html", edashboardRouter);
 app.use("/ecommerce-summary.html", esummaryRouter);
 app.use("/ecommerce-orders.html", eordersRouter);
