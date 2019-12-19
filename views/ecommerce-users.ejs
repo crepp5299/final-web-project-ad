@@ -94,7 +94,14 @@
                                                 </td>
                                                 <td>
                                                     <a href="users/edit-user/<%= euser._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
-                                                    <a href="users/delete/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá tài khoản <%= user.username %>?');"><i class="md md-close"></i></a>
+                                                    <a href="users/delete/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá tài khoản <%= euser.username %>?');"><i class="md md-close"></i></a>
+                                                    <% if(euser.isLock == false){ %>
+                                                    <a href="users/lock/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn khoá tài khoản <%= euser.username %>?');"><i class="md md-lock"></i></a>
+                                                    <% } %>
+
+                                                    <% if(euser.isLock == true){ %>
+                                                        <a href="users/unlock/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn mở khoá tài khoản <%= euser.username %>?');"><i class="md md-lock-open"></i></a>
+                                                        <% } %>
                                                 </td>
                                                 
                                             </tr>    

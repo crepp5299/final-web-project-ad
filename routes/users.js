@@ -11,4 +11,8 @@ router.post("/edit-user/:userId", userController.postEditUser);
 
 router.get("/delete/:userId", userController.deleteUser);
 
+router.get("/lock/:userId", userController.lockUser);
+
+router.get("/unlock/:userId", userController.unlockUser);
+
 module.exports = router;

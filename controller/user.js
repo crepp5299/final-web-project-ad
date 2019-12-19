@@ -113,3 +113,23 @@ exports.deleteUser = (req, res, next) => {
   const userId = req.params.userId;
   Users.deleteOne({ _id: userId }).then(res.redirect("/users"));
 };
+
+exports.lockUser = (req, res, next) => {
+  const userId = req.params.userId;
+  Users.findOne({ _id: userId })
+    .then(user => {
+      user.isLock = true;
+      user.save();
+    })
+    .then(res.redirect("back"));
+};
+
+exports.unlockUser = (req, res, next) => {
+  const userId = req.params.userId;
+  Users.findOne({ _id: userId })
+    .then(user => {
+      user.isLock = false;
+      user.save();
+    })
+    .then(res.redirect("back"));
+};

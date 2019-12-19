@@ -50,6 +50,13 @@ module.exports = passport => {
               message: "Tài khoản không đủ quyền hạn."
             });
           }
+
+          if (user.isLock == true) {
+            return done(null, false, {
+              message: "Tài khoản đã bị khoá."
+            });
+          }
+
           return done(null, user);
         });
       });
