@@ -62,8 +62,9 @@
                                                 <th>User Name</th>                                            
                                                 <th>Tên</th>
                                                 <th >Email</th>
-                                                <th style="min-width: 70px;">Địa chỉ</th>
+                                                <th style="min-width: 70px;">Trạng thái</th>
                                                 <th>SĐT</th>
+                                                <!-- <th>Trạng thái</th> -->
                                                 <th style="min-width: 80px;">Chức năng</th>
                                             </tr>
                                         </thead>
@@ -86,21 +87,36 @@
                                                 </td>
 
                                                 <td>
-                                                    <%= euser.address %>
-                                                </td>
+                                                        
+                                                        <%if (euser.toJSON().isAuthenticated && !euser.toJSON().isLock) { %>
+                                                            <span class="label label-success">Đã kích hoạt</span>
+                                                        <% } %>
+
+                                                        <%if (!euser.toJSON().isAuthenticated && !euser.toJSON().isLock) { %>
+                                                            <span class="label label-warning">Chưa kích hoạt</span>
+                                                        <% } %>
+
+                                                        <%if (euser.toJSON().isLock) { %>
+                                                            <span class="label label-danger">Đã bị khoá</span>
+                                                        <% } %>
+                                                    </td>
                                                 
                                                 <td>
                                                     <%= euser.phoneNumber%>
                                                 </td>
+
+                                                
+                                                    
+                                                
                                                 <td>
-                                                    <a href="users/edit-user/<%= euser._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
-                                                    <a href="users/delete/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá tài khoản <%= euser.username %>?');"><i class="md md-close"></i></a>
+                                                    <a href="/users/edit-user/<%= euser._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    <a href="/users/delete/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá tài khoản <%= euser.username %>?');"><i class="md md-close"></i></a>
                                                     <% if(euser.isLock == false){ %>
-                                                    <a href="users/lock/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn khoá tài khoản <%= euser.username %>?');"><i class="md md-lock"></i></a>
+                                                    <a href="/users/lock/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn khoá tài khoản <%= euser.username %>?');"><i class="md md-lock"></i></a>
                                                     <% } %>
 
                                                     <% if(euser.isLock == true){ %>
-                                                        <a href="users/unlock/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn mở khoá tài khoản <%= euser.username %>?');"><i class="md md-lock-open"></i></a>
+                                                        <a href="/users/unlock/<%= euser._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn mở khoá tài khoản <%= euser.username %>?');"><i class="md md-lock-open"></i></a>
                                                         <% } %>
                                                 </td>
                                                 
@@ -254,40 +270,40 @@
         </script>
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/detect.js"></script>
-<script src="assets/js/fastclick.js"></script>
-<script src="assets/js/jquery.slimscroll.js"></script>
-<script src="assets/js/jquery.blockUI.js"></script>
-<script src="assets/js/waves.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/jquery.nicescroll.js"></script>
-<script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/detect.js"></script>
+<script src="/assets/js/fastclick.js"></script>
+<script src="/assets/js/jquery.slimscroll.js"></script>
+<script src="/assets/js/jquery.blockUI.js"></script>
+<script src="/assets/js/waves.js"></script>
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/jquery.nicescroll.js"></script>
+<script src="/assets/js/jquery.scrollTo.min.js"></script>
 
-<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.bootstrap.js"></script>
 
-<script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
-<script src="assets/plugins/datatables/buttons.bootstrap.min.js"></script>
-<script src="assets/plugins/datatables/jszip.min.js"></script>
-<script src="assets/plugins/datatables/pdfmake.min.js"></script>
-<script src="assets/plugins/datatables/vfs_fonts.js"></script>
-<script src="assets/plugins/datatables/buttons.html5.min.js"></script>
-<script src="assets/plugins/datatables/buttons.print.min.js"></script>
-<script src="assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
-<script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
-<script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
-<script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
-<script src="assets/plugins/datatables/dataTables.scroller.min.js"></script>
-<script src="assets/plugins/datatables/dataTables.colVis.js"></script>
-<script src="assets/plugins/datatables/dataTables.fixedColumns.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="/assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+<script src="/assets/plugins/datatables/jszip.min.js"></script>
+<script src="/assets/plugins/datatables/pdfmake.min.js"></script>
+<script src="/assets/plugins/datatables/vfs_fonts.js"></script>
+<script src="/assets/plugins/datatables/buttons.html5.min.js"></script>
+<script src="/assets/plugins/datatables/buttons.print.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="/assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.scroller.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.colVis.js"></script>
+<script src="/assets/plugins/datatables/dataTables.fixedColumns.min.js"></script>
 
-<script src="assets/pages/datatables.init.js"></script>
+<script src="/assets/pages/datatables.init.js"></script>
 
 
-<script src="assets/js/jquery.core.js"></script>
-<script src="assets/js/jquery.app.js"></script>
+<script src="/assets/js/jquery.core.js"></script>
+<script src="/assets/js/jquery.app.js"></script>
 
 
 <script type="text/javascript">

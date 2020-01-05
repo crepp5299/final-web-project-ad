@@ -22,8 +22,8 @@ Download the [latest release](http://owlcarousel.owlgraphic.com/download/owl.car
 Put the script at the [bottom](https://developer.yahoo.com/performance/rules.html#js_bottom) of your markup right after jQuery:
 
 ```html
-<script src="jquery.min.js"></script>
-<script src="owlcarousel/owl.carousel.min.js"></script>
+<script src="/jquery.min.js"></script>
+<script src="/owlcarousel/owl.carousel.min.js"></script>
 ```
 
 Wrap your items (`div`, `a`, `img`, `span`, `li` etc.) with a container element (`div`, `ul` etc.). Only the class `owl-carousel` is mandatory to apply proper styles:

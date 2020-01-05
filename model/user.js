@@ -1,26 +1,25 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const userSchema = new Schema({
   username: {
     type: String,
-    require: true
+    required: true
   },
   password: {
     type: String,
-    require: true
+    required: true
   },
   firstName: {
     type: String,
-    required: true
+    required: false
   },
   lastName: {
     type: String,
-    required: true
+    required: false
   },
   email: {
     type: String,
-    required: true
+    required: false
   },
   address: {
     type: String,
@@ -32,15 +31,46 @@ const userSchema = new Schema({
   },
   role: {
     type: Number,
-    required: true,
+    required: false,
     default: 0
   },
   isLock: {
     type: Boolean,
-    required: true,
+    required: false,
     default: false
+  },
+  isAuthenticated: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  verify_token: {
+    type: String,
+    required: false
+  },
+  stall: {
+    sellCount: {
+      type: Number,
+      default: 0
+    },
+    total: {
+      type: Number,
+      default: 0
+    },
+    products: [
+      {
+        sellCount: {
+          type: Number,
+          default: 0
+        },
+        id: {
+          type: Schema.Types.ObjectId,
+          ref: 'Product'
+        }
+      }
+    ]
   }
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;
