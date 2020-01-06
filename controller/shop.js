@@ -35,7 +35,7 @@ exports.postAddNewProduct = (req, res) => {
   let imageUrl = [];
   if (images) {
     for (var i = 0; i < images.length; i++) {
-      imageUrl.push('http://bros-admin.herokuapp.com/assets/images/' + images[i].path);
+      imageUrl.push(images[i].name);
     }
   }
 
