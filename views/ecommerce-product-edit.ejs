@@ -67,7 +67,7 @@
                             <div class="col-sm-12">
 
 
-                                    <form action="/shop/add" method="POST">
+                                    <form id="productContent" action="/shop/add" method="POST" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="card-box">
@@ -75,22 +75,22 @@
 
                                                     <div class="form-group m-b-20">
                                                         <label>Tên sản phẩm<span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="e.g : Áo Thun" name="productName">
+                                                        <input type="text" class="form-control" placeholder="e.g : Áo Thun" name="productName" required>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
                                                         <label>Thương hiệu <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="e.g : Khác" name="productLabel">
+                                                        <input type="text" class="form-control" placeholder="e.g : Khác" name="productLabel" required>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
                                                         <label>Mô tả sản phẩm <span class="text-danger">*</span></label>
-                                                        <textarea class="form-control" rows="5" placeholder="Mô tả thông tin sơ lược , giới thiệu sản phẩm" name="productDescription"></textarea>
+                                                        <textarea class="form-control" rows="5" placeholder="Mô tả thông tin sơ lược , giới thiệu sản phẩm" name="productDescription" required></textarea>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
                                                         <label>Chất liệu sản phẩm</label>
-                                                        <textarea class="form-control" rows="2" placeholder="Thông tin sơ lược về chất liệu ( e.g : Cotton, Leather,...)" name="productMaterial"></textarea>
+                                                        <textarea class="form-control" rows="2" placeholder="Thông tin sơ lược về chất liệu ( e.g : Cotton, Leather,...). Cách nhau bởi dấu ," name="productMaterial" required></textarea>
                                                     </div>
 
 
@@ -113,8 +113,8 @@
 
                                                     <div class="form-group m-b-20">
                                                         <label>Phân loại <span class="text-danger">*</span></label>
-                                                        <select class="form-control select2">
-                                                            <option>Chọn</option>
+                                                        <select class="form-control" form="productContent" required>
+                                                            
                                                             <% cat.forEach(function(item) { %>
                                                                 <optgroup label="<%= item.name %>">
                                                                     <% item.childName.forEach(function(child) { %>
@@ -129,17 +129,17 @@
 
                                                     <div class="form-group m-b-20">
                                                         <label>Giá <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="Đô la thôi nha" name="productPrice">
+                                                        <input type="text" class="form-control" pattern="[0-9]+" placeholder="Đô la thôi nha" name="productPrice" required>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
                                                         <label>Kích cỡ <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="Nhập cách nhau bởi dấu , " name="productSize">
+                                                        <input type="text" class="form-control" placeholder="Nhập cách nhau bởi dấu , " name="productSize" required>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
                                                         <label>Màu sắc <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control"  placeholder="Nhập cách nhau bởi dấu , " name="productColor">
+                                                        <input type="text" class="form-control"  placeholder="Nhập cách nhau bởi dấu , " name="productColor" required>
                                                     </div>
 
                                                     
@@ -157,17 +157,17 @@
 
                                                     <div class="form-group m-b-20">
                                                         <label>Tags</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập danh sách tags cách nhau bởi dấu ," name="productTag">
+                                                        <input type="text" class="form-control" placeholder="Nhập danh sách tags cách nhau bởi dấu ," name="productTag" required>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
-                                                        <label>Giảm giá</label>
-                                                        <input type="text" class="form-control" type="number" placeholder="Nhập % giảm giá" name="productSale">
+                                                        <label>Giảm giá (0 -> 100) %</label>
+                                                        <input type="text" class="form-control" type="number" pattern="[0-9]+" placeholder="Nhập % giảm giá" name="productSale" required>
                                                     </div>
 
                                                     <div class="form-group m-b-20">
                                                         <label>Số lượng hàng</label>
-                                                        <input type="text" class="form-control" type="number" placeholder="Số lượng hàng" name="productStock">
+                                                        <input type="text" class="form-control" type="number" pattern="[0-9]+" placeholder="Số lượng hàng" name="productStock" required>
                                                     </div>
 
                                                     
@@ -186,7 +186,7 @@
                                                     <div class="text-center m-t-30">
                                                         <div class="fileupload btn btn-purple btn-md w-md waves-effect waves-light">
                                                             <span><i class="ion-upload m-r-5"></i>Upload</span>
-                                                            <input type="file" accept="image/*" class="upload" onchange="loadFile(event)">
+                                                            <input type="file" accept="image/*" name="productImage" class="upload" onchange="loadFile(event)" multiple>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -238,17 +238,24 @@
         <script>
             var resizefunc = [];
             var loadFile = function(event) {
+                event.preventDefault();
+                console.log(event.target.files);
                 var output = document.getElementById('product-image');
+                output.innerHTML = '';
+
                 var html = `
                             <div class="table-detail">
-                            <img src=${URL.createObjectURL(event.target.files[0])} class="thumb-lg" alt="img">
-                            
-                                        <a href="#" class="table-action-btn" onclick="removeItem(event)"><i class="md md-close"></i></a>
-                            
-                            </div>
-                                                        
+                            <img src=%%image%% class="thumb-lg" alt="img">
+                            </div>                      
                             `;
-                output.insertAdjacentHTML('beforeend', html)
+
+                for (var i = 0; i < event.target.files.length; i++) {
+                    output.insertAdjacentHTML('beforeend', html.replace('%%image%%', URL.createObjectURL(event.target.files[i])))
+                }
+
+                            
+
+                
             };
 
             var removeItem = function(event) {

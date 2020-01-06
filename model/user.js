@@ -63,7 +63,7 @@ const userSchema = new Schema({
           type: Number,
           default: 0
         },
-        id: {
+        prodId: {
           type: Schema.Types.ObjectId,
           ref: 'Product'
         }

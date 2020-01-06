@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const removeAccent = require('../util/removeAccent');
 
 const productSchema = new Schema({
   name: {
@@ -32,9 +31,9 @@ const productSchema = new Schema({
     type: [String],
     required: true
   },
-  pattern: {
-    type: [String],
-    required: false
+  gender: {
+    type: String,
+    required: true
   },
   tags: {
     type: [String],
@@ -50,14 +49,25 @@ const productSchema = new Schema({
     default: Date.now
   },
   isSale: {
-    type: Boolean,
-    required: false,
-    default: false
+    status: {
+      type: Boolean,
+      default: false
+    },
+    percent: {
+      type: Number,
+      default: 0
+    },
+    end: {
+      type: Date
+    }
   },
   ofSellers: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'User'
+    userId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
+    },
+    name: String
   },
   labels: {
     type: String,
