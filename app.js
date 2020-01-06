@@ -13,7 +13,7 @@ const urlConnect = `mongodb+srv://brogrammers2527:brogrammers2527@cluster0-mwti3
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'images');
+    cb(null, 'public/assets/images');
   },
   filename: (req, file, cb) => {
     cb(null, new Date().toISOString() + '-' + file.originalname);
@@ -31,6 +31,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(
@@ -48,6 +49,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(multer({ storage: fileStorage }).array('productImage'));
 
 app.use('/', indexRouter);
