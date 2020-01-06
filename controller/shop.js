@@ -35,7 +35,7 @@ exports.postAddNewProduct = (req, res) => {
   let imageUrl = [];
   if (images) {
     for (var i = 0; i < images.length; i++) {
-      imageUrl.push(images[i].name);
+      imageUrl.push(images[i].filename);
     }
   }
 
