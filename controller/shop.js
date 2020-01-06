@@ -1,6 +1,6 @@
 const User = require('../model/user');
 const Category = require('../model/productCategory');
-const Product = require('../model/Product');
+const Product = require('../model/product');
 
 exports.getAddNewProduct = (req, res) => {
   Category.find({})
