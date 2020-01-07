@@ -10,6 +10,8 @@ router.get('/login', userController.getLogin);
 
 router.post('/login', userController.postLogin);
 
+router.get('/dashboard', isAuth, shopController.getDashboard);
+
 router.get('/add-account', isAuth, userController.getAddAccount);
 
 router.post('/add-account', isAuth, userController.postAddAccount);

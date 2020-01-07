@@ -177,11 +177,28 @@ exports.postDeleteProduct = (req, res, next) => {
 
 exports.getOrder = (req, res) => {
   Order.find({ 'cart.numItems': { $gt: 0 } }).then(listOrders => {
-    console.log(listOrders.cart);
     return res.render('orders', {
       title: 'Quản lý Đơn Hàng',
       orders: listOrders,
       user: req.user
     });
   });
+};
+
+exports.getDashboard = (req, res) => {
+  Product.find({})
+    .sort({ buyCounts: 'desc' })
+    .limit(10)
+    .then(topten => {
+      Product.find({})
+        .sort({ buyCounts: 'desc' })
+        .limit(10)
+        .then(topten => {
+          return res.render('ecommerce-dashboard', {
+            title: 'Quản lý Đơn Hàng',
+            user: req.user,
+            top10product: topten
+          });
+        });
+    });
 };

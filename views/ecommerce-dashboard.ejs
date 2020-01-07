@@ -193,13 +193,14 @@
                                             <tbody>
                                                 <% top10product.forEach(function(item) { %>
                                                 <tr>
-                                                    <td><img src="<%= item.image %>" class="thumb-sm" alt=""> </td>
+                                                    <td><img src="http://bros-admin.herokuapp.com/assets/images/<%= item.image %>" class="thumb-sm" alt=""> </td>
                                                     <td><%= item.name %></td>
-                                                    <td><%= item.count %></td>
+                                                    <td><%= item.buyCounts %></td>
                                                     <td><%= item.price %></td>
                                                     <td>
-                                                    	<a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
-                                                    	<a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                                        <a href="/shop/edit/<%= item._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                        <a href="/shop/delete/<%= item._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá <%= item.name %>?');"><i class="md md-close"></i></a>
+                                                        
                                                     </td>
                                                 </tr>
                                                 <% }); %>
@@ -233,18 +234,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                    <% top10seller.forEach(function(item) { %>
-                                                        <tr>
-                                                            
-                                                            <td><%= item.name %></td>
-                                                            <td><%= item.count %></td>
-                                                            <td><%= item.income %></td>
-                                                            <td>
-                                                                <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
-                                                                <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <% }); %>
+                                                   
 
                                             </tbody>
                                         </table>
