@@ -144,7 +144,7 @@ exports.postEditProduct = (req, res, next) => {
 
   const type = String(productType).split('-');
 
-  Product.findByIdAndUpdate(prodId, {
+  var updateConfig = {
     name: productName,
     description: productDescription,
     stock: productStock,
@@ -158,7 +158,11 @@ exports.postEditProduct = (req, res, next) => {
     isSale: { status: productSale > 0, percent: productSale },
     gender: radioGender,
     materials: String(productMaterial).split(',')
-  }).then(prod => {
+  };
+
+  if (images) updateConfig.images = imageUrl;
+
+  Product.findByIdAndUpdate(prodId, updateConfig).then(prod => {
     res.redirect('/stalls');
   });
 };
