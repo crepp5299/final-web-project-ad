@@ -10,6 +10,7 @@ const session = require('express-session');
 const multer = require('multer');
 const urlConnect = `mongodb+srv://brogrammers2527:brogrammers2527@cluster0-mwti3.mongodb.net/test?retryWrites=true&w=majority
 `;
+const compression = require('compression');
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -28,7 +29,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var shopRouter = require('./routes/shop');
 var app = express();
-
+app.use(compression());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
