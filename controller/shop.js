@@ -49,7 +49,7 @@ exports.postAddNewProduct = (req, res) => {
     size: String(productSize)
       .replace(/ /g, '')
       .split(','),
-    type: { main: type[0], sub: type[1] },
+    productType: { main: type[0], sub: type[1] },
     color: String(productColor).split(','),
     tags: String(productTag).split(','),
     isSale: { status: productSale > 0, percent: productSale },
