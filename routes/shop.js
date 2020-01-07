@@ -12,4 +12,6 @@ router.post('/edit/:prodId', isAuth, shopController.postEditProduct);
 router.get('/delete/:prodId', isAuth, shopController.postDeleteProduct);
 
 router.get('/stalls', isAuth, shopController.getStall);
+
+router.get('/orders', isAuth, shopController.getOrder);
 module.exports = router;

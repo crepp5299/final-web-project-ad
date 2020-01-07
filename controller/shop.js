@@ -1,7 +1,7 @@
 const User = require('../model/user');
 const Category = require('../model/productCategory');
 const Product = require('../model/product');
-
+const Order = require('../model/order');
 exports.getAddNewProduct = (req, res) => {
   Category.find({})
     .then(cat => {
@@ -173,4 +173,15 @@ exports.postDeleteProduct = (req, res, next) => {
   let error = {};
   const prodId = req.params.prodId;
   Product.findByIdAndDelete(prodId).then(res.redirect('/stalls'));
+};
+
+exports.getOrder = (req, res) => {
+  Order.find({ 'cart.numItems': { $gt: 0 } }).then(listOrders => {
+    console.log(listOrders.cart);
+    return res.render('orders', {
+      title: 'Quản lý Đơn Hàng',
+      orders: listOrders,
+      user: req.user
+    });
+  });
 };
