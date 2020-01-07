@@ -188,6 +188,17 @@ exports.getOrder = (req, res) => {
 exports.getDashboard = async (req, res) => {
   let top10prod;
   let userlist;
+  var countUser;
+  var date = new Date();
+  var totalIncom = 0;
+  var Incom = 0;
+  var yearIncom = 0;
+  var monthIncom = 0;
+  var totalOrder = 0;
+
+  await User.count({}, function(err, count) {
+    countUser = count;
+  });
   await Product.find({})
     .sort({ buyCounts: 'desc' })
     .limit(10)
@@ -220,12 +231,33 @@ exports.getDashboard = async (req, res) => {
     return b.sellCount - a.sellCount;
   });
 
+  await Order.find({}).then(orders => {
+    orders.forEach(function(order) {
+      if (order) {
+        totalOrder++;
+        totalIncom += order.cart.totalPrice;
+        if (order.date.getDate() == date.getDate() && order.date.getMonth() == date.getMonth() && order.date.getYear() == date.getYear()) {
+          Incom += order.cart.totalPrice;
+        }
+        if (order.date.getMonth() == date.getMonth() && order.date.getYear() == date.getYear()) {
+          monthIncom += order.cart.totalPrice;
+        }
+        if (order.date.getYear() == date.getYear()) {
+          yearIncom += order.cart.totalPrice;
+        }
+      }
+    });
+  });
+
   console.log(userlist);
 
   return res.render('ecommerce-dashboard', {
     title: 'Dashboard',
     top10product: top10prod,
     top10stall: userlist,
+    totalIncom: totalIncom,
+    userCount: countUser,
+    totalOrder: totalOrder,
     user: req.user
   });
 };
