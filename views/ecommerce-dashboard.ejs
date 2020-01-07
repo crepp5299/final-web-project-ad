@@ -228,13 +228,23 @@
                                                 <tr>
                                                     <th>Tên gian hàng</th>
                                                     <th>Đã bán</th>
-                                                    <th>Tổng Thu</th>
-        
                                                     <th style="min-width: 80px;">Action</th>
                                                 </tr>
+
+                                                
                                             </thead>
                                             <tbody>
-                                                   
+                                                <% top10stall.forEach(function(item) { %>
+                                                    <tr>
+                                                        <td><%= item.username %></td>
+                                                        <td><%= item.sellCount %></td>
+
+                                                        <td>
+                                                            <a href="/user/edit/<%= item._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                            <a href="/user/delete/<%= item._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá <%= item.username %>?');"><i class="md md-close"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %> 
 
                                             </tbody>
                                         </table>

@@ -185,20 +185,47 @@ exports.getOrder = (req, res) => {
   });
 };
 
-exports.getDashboard = (req, res) => {
-  Product.find({})
+exports.getDashboard = async (req, res) => {
+  let top10prod;
+  let userlist;
+  await Product.find({})
     .sort({ buyCounts: 'desc' })
     .limit(10)
     .then(topten => {
-      Product.find({})
-        .sort({ buyCounts: 'desc' })
-        .limit(10)
-        .then(topten => {
-          return res.render('ecommerce-dashboard', {
-            title: 'Quản lý Đơn Hàng',
-            user: req.user,
-            top10product: topten
-          });
+      top10prod = topten;
+    })
+    .catch(err => console.log(err));
+  await User.find({ role: { $gt: 0 } })
+    .limit(10)
+    .then(async users => {
+      let userArray = [];
+      for (var i = 0; i < users.length; i++) {
+        let userObj = {};
+        await Product.find({ 'ofSellers.userId': users[i]._id }).then(products => {
+          users[i].prodCount = products.length;
+          var sell = 0;
+          for (var j = 0; j < products.length; j++) {
+            sell += Number(products[j].buyCounts);
+          }
+          users[i].sellCount = sell;
         });
+      }
+      userlist = users;
+    })
+    .catch(err => {
+      console.log(err);
     });
+
+  await userlist.sort(function(a, b) {
+    return b.sellCount - a.sellCount;
+  });
+
+  console.log(userlist);
+
+  return res.render('ecommerce-dashboard', {
+    title: 'Dashboard',
+    top10product: top10prod,
+    top10stall: userlist,
+    user: req.user
+  });
 };
