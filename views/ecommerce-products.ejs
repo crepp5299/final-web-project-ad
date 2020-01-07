@@ -54,73 +54,69 @@
 
                         <!-- SECTION FILTER
                         ================================================== -->
-                        <div class="row m-t-10 m-b-10">
-
-                            <div class="col-sm-6">
-                                <form role="form">
-                                    <div class="form-group contact-search m-b-0">
-                                        <input type="text" id="search" class="form-control product-search" placeholder="Search here...">
-                                        <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
-                                    </div> <!-- form-group -->
-                                </form>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="h5 m-0 text-right">
-                                    <label class="vertical-middle m-r-10">Sort By:</label>
-                                    <div class="btn-group vertical-middle" data-toggle="buttons">
-                                         <label class="btn btn-default btn-md waves-effect active">
-                                            <input type="radio" autocomplete="off" checked=""> Status
-                                         </label>
-                                         <label class="btn btn-default btn-md waves-effect">
-                                            <input type="radio" autocomplete="off"> Type
-                                         </label>
-                                         <label class="btn btn-default btn-md waves-effect">
-                                            <input type="radio" autocomplete="off"> Name
-                                         </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        
 
 
                         <div class="row">
-                            <div class="m-b-15">
-                                <% prodList.forEach(function(item) { 
-                                    if (item) {%>   
-                                <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
-                                    <div class="product-list-box thumb">
-                                        <a href="javascript:void(0);" class="image-popup" title="Screenshot-1">
-                                            <img src="http://bros-admin.herokuapp.com/assets/images/<%= item.images[0] %>" class="thumb-img" alt="work-thumbnail">
-                                        </a>
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <h4 class="m-t-0 header-title"><b>Sản phẩm</b></h4>
+                                    
+        
+                                    <table id="datatable" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>                                    
+                                                <th style="width: 100px">Ảnh</th>                                            
+                                                <th>Tên</th>
+                                                <th>Số lượng</th>
+                                                <th>Đã bán</th>
+                                                <!-- <th>Trạng thái</th> -->
+                                                <th style="min-width: 80px;">Chức năng</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <% prodList.forEach(function(item){ 
+                                                %>
+                                            <tr>
+                                                
+                                                <td>
+                                                    <img src="http://bros-admin.herokuapp.com/assets/images/<%= item.images[0] %>"class="thumb-img" width="100px" height="100px" alt="work-thumbnail">
+                                                </td>
+                                                
+                                                <td>
+                                                    <%= item.name %>
+                                                </td>
+                                                
+                                                <td>
+                                                    <%= item.stock %>
+                                                </td>
 
-                                        <div class="product-action">
-                                            <a href="#" class="btn btn-success btn-sm"><i class="md md-mode-edit"></i></a>
-                                            <a href="#" class="btn btn-danger btn-sm"><i class="md md-close"></i></a>
-                                        </div>
+                                                <td>
+                                                    <%= item.buyCounts %>
+                                                </td>
 
-                                        <div class="price-tag">
-                                            <%= item.price %>
-                                        </div>
-                                        <div class="detail">
-                                            <h4 class="m-t-0"><a href="" class="text-dark"><%= item.name %></a> </h4>
-                                            <div class="rating">
-                                                <ul class="list-inline">
-                                                    <li><a class="fa fa-star" href=""></a></li>
-                                                    <li><a class="fa fa-star" href=""></a></li>
-                                                    <li><a class="fa fa-star" href=""></a></li>
-                                                    <li><a class="fa fa-star" href=""></a></li>
-                                                    <li><a class="fa fa-star-o" href=""></a></li>
-                                                </ul>
-                                            </div>
-                                            <h5 class="m-0"> <span class="text-muted"> Kho hàng :<%= item.stock %><span></h5>
-                                        </div>
-                                    </div>
+                                            
+
+                                
+                                         
+                                                
+                                                <td>
+                                                    <a href="/shop/edit/<%= item._id%>" class="table-action-btn"><i class="md md-edit"></i></a>
+                                                    <a href="/shop/delete/<%= item._id%>" class="table-action-btn" onclick="return confirm('Bạn muốn xoá <%= item.name %>?');"><i class="md md-close"></i></a>
+                                                    
+                                                </td>
+                                                
+                                            </tr>    
+                                            <% }); %>                                      
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <% }}); %>
                             </div>
-                        </div> <!-- End row -->
+                        </div>
+
+
+                       
                     </div> <!-- container -->
                                
                 </div> <!-- content -->
@@ -161,6 +157,61 @@
 
         <script src="/assets/js/jquery.core.js"></script>
         <script src="/assets/js/jquery.app.js"></script>
+
+
+
+        <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="/assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+<script src="/assets/plugins/datatables/jszip.min.js"></script>
+<script src="/assets/plugins/datatables/pdfmake.min.js"></script>
+<script src="/assets/plugins/datatables/vfs_fonts.js"></script>
+<script src="/assets/plugins/datatables/buttons.html5.min.js"></script>
+<script src="/assets/plugins/datatables/buttons.print.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="/assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.scroller.min.js"></script>
+<script src="/assets/plugins/datatables/dataTables.colVis.js"></script>
+<script src="/assets/plugins/datatables/dataTables.fixedColumns.min.js"></script>
+
+<script src="/assets/pages/datatables.init.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable({keys: true});
+                $('#datatable-responsive').DataTable();
+                $('#datatable-colvid').DataTable({
+                    "dom": 'C<"clear">lfrtip',
+                    "colVis": {
+                        "buttonText": "Change columns"
+                    }
+                });
+                $('#datatable-scroller').DataTable({
+                    ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                    deferRender: true,
+                    scrollY: 380,
+                    scrollCollapse: true,
+                    scroller: true
+                });
+                var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+                var table = $('#datatable-fixed-col').DataTable({
+                    scrollY: "300px",
+                    scrollX: true,
+                    scrollCollapse: true,
+                    paging: false,
+                    fixedColumns: {
+                        leftColumns: 1,
+                        rightColumns: 1
+                    }
+                });
+            });
+            TableManageButtons.init();
+        
+        </script>
 
     </body>
 </html>

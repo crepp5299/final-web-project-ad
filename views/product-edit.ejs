@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+        
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="/" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <!-- Image Logo here -->
+                        <!--<a href="/" class="logo">-->
+                            <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                            <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                        <!--</a>-->
+                    </div>
+                </div>
+
+            <% include partials/menu %>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+						<div class="row">
+							<div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                                    
+                                </div>
+
+								<h4 class="page-title">Thêm sản phẩm</h4>
+								<ol class="breadcrumb">
+									<li>
+										<a href="#">Ubold</a>
+									</li>
+                                    <li>
+										<a href="#">Cửa hàng</a>
+									</li>
+									<li class="active">
+										Thêm sản phẩm
+									</li>
+								</ol>
+							</div>
+						</div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+
+                                    <form id="productContent" action="/shop/edit/<%= prod._id %>" method="POST" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Thông tin</b></h5>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Tên sản phẩm<span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" placeholder="e.g : Áo Thun" name="productName" value="<%= prod.name %>" required>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Thương hiệu <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" placeholder="e.g : Khác" name="productLabel" value="<%= prod.labels %>"  required>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Mô tả sản phẩm <span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" rows="5" placeholder="Mô tả thông tin sơ lược , giới thiệu sản phẩm" name="productDescription" required><%= prod.description %></textarea>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Chất liệu sản phẩm</label>
+                                                        <textarea class="form-control" rows="2" placeholder="Thông tin sơ lược về chất liệu ( e.g : Cotton, Leather,...). Cách nhau bởi dấu ," name="productMaterial"  required><%= prod.materials.join(',') %></textarea>
+                                                    </div>
+
+
+                                                    <div class="form-group m-b-20">
+                                                        <label class="m-b-15">Giới tính <span class="text-danger">*</span></label>
+                                                        <br/>
+                                                        <div class="radio radio-inline">
+                                                            <input type="radio" id="genderunisex" value="genderunisex" name="radioGender" checked="">
+                                                            <label for="genderunisex"> Unisex </label>
+                                                        </div>
+                                                        <div class="radio radio-inline">
+                                                            <input type="radio" id="gendermale" value="gendermale" name="radioGender">
+                                                            <label for="gendermale"> Nam </label>
+                                                        </div>
+                                                        <div class="radio radio-inline">
+                                                            <input type="radio" id="genderfemale" value="genderfemale" name="radioGender">
+                                                            <label for="genderfemale"> Nữ </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Phân loại <span class="text-danger">*</span></label>
+                                                        <select class="form-control" form="productContent" name="productType" required>
+                                                            
+                                                            <% cat.forEach(function(item) { %>
+                                                                <optgroup label="<%= item.name %>">
+                                                                    <% item.childName.forEach(function(child) { %>
+                                                                    <option form="productContent" value="<%= item.name %>-<%= child %>" name="productType"><%= child %></option>
+                                                                    <% }) %>
+                                                                </optgroup>
+                                                            <% }) %>
+                                                            
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Giá <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" pattern="[0-9]+" placeholder="Đô la thôi nha" value="<%= prod.price %>" name="productPrice" required>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Kích cỡ <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" placeholder="Nhập cách nhau bởi dấu , " value="<%= prod.size.join(',') %>" name="productSize" required>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Màu sắc <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control"  placeholder="Nhập cách nhau bởi dấu , " value="<%= prod.color.join(',') %>" name="productColor" required>
+                                                    </div>
+
+                                                    
+
+                                                    
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-6">
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-20"><b>Thông tin khác</b></h5>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Tags</label>
+                                                        <input type="text" class="form-control" placeholder="Nhập danh sách tags cách nhau bởi dấu ," value="<%= prod.tags.join(',') %>" name="productTag" required>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Giảm giá (0 -> 100) %</label>
+                                                        <input type="text" class="form-control" type="number" pattern="[0-9]+" value="0" placeholder="Nhập % giảm giá" name="productSale" required>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <label>Số lượng hàng</label>
+                                                        <input type="text" class="form-control" type="number" pattern="[0-9]+" value="<%= prod.stock %>" placeholder="Số lượng hàng" name="productStock" required>
+                                                    </div>
+
+                                                    
+
+                                                </div>
+
+                                                <div class="card-box">
+                                                    <h5 class="text-muted text-uppercase m-t-0 m-b-30"><b>Ảnh sản phẩm</b></h5>
+
+                                                    <div class="table-box m-b-30" id="product-image">
+                                                        
+                                                    <% prod.images.forEach(function(link) { %>
+
+                                                    
+                                                        
+                                                        <div class="table-detail">
+                                                        <img src="http://bros-admin.herokuapp.com/assets/images/<%= link %>" class="thumb-lg" alt="img">
+                                                        </div>                      
+                                                        <% }) %>
+                            
+                                                        
+
+                                                    </div>
+
+                                                   
+
+                                                    <div class="text-center m-t-30">
+                                                        <div class="fileupload btn btn-purple btn-md w-md waves-effect waves-light">
+                                                            <span><i class="ion-upload m-r-5"></i>Upload</span>
+                                                            <input type="file" accept="image/*" name="productImage" class="upload" onchange="loadFile(event)" multiple>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <div class="text-center p-20">
+                                                     <button type="button" class="btn w-sm btn-white waves-effect">Huỷ</button>
+                                                     <button type="submit" class="btn w-sm btn-default waves-effect waves-light">Lưu</button>
+			                                         <button type="button" class="btn w-sm btn-danger waves-effect waves-light">Xoá</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            
+            
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            
+
+        </div>
+        <!-- END wrapper -->
+
+
+    
+        <script>
+            var resizefunc = [];
+            var loadFile = function(event) {
+                event.preventDefault();
+                console.log(event.target.files);
+                var output = document.getElementById('product-image');
+                output.innerHTML = '';
+
+                var html = `
+                            <div class="table-detail">
+                            <img src=%%image%% class="thumb-lg" alt="img">
+                            </div>                      
+                            `;
+
+                for (var i = 0; i < event.target.files.length; i++) {
+                    output.insertAdjacentHTML('beforeend', html.replace('%%image%%', URL.createObjectURL(event.target.files[i])))
+                }
+
+                            
+
+                
+            };
+
+            var removeItem = function(event) {
+                event.target.closest('div.table-detail').remove();
+            }
+        </script>
+
+        <!-- jQuery  -->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/wow.min.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="/assets/js/jquery.core.js"></script>
+        <script src="/assets/js/jquery.app.js"></script>
+
+        <script src="/assets/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+
+        <script>
+            jQuery(document).ready(function() {
+                // Select2
+                $(".select2").select2();
+            });
+        </script>
+
+
+
+
+    </body>
+</html>

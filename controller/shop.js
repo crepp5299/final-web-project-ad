@@ -59,26 +59,26 @@ exports.postAddNewProduct = (req, res) => {
     ofSellers: { userId: req.user._id, name: req.user.username }
   });
 
-  newProduct
-    .save()
-    .then(product => {
-      User.findById(req.user._id, (err, user) => {
-        var p = { sellCount: 0, prodId: product._id };
-        let userProd = user.stall.products;
-        userProd.push(p);
-        user.stall.products = userProd;
-        user.stall.total++;
-        user.save();
-      });
-      res.redirect('/');
-    })
-    .catch(err => console.log(err));
+  newProduct.save();
 };
 
 exports.getStall = (req, res, next) => {
-  User.find({ stall: { $exists: true } })
-    .then(users => {
-      res.render('ecommerce-stalls', {
+  User.find({ role: { $gt: 0 } })
+    .then(async users => {
+      let userArray = [];
+      for (var i = 0; i < users.length; i++) {
+        let userObj = {};
+        await Product.find({ 'ofSellers.userId': users[i]._id }).then(products => {
+          users[i].prodCount = products.length;
+          var sell = 0;
+          for (var j = 0; j < products.length; j++) {
+            sell += Number(products[j].buyCounts);
+          }
+          users[i].sellCount = sell;
+        });
+      }
+
+      return res.render('ecommerce-stalls', {
         title: 'Quản lý gian hàng',
         allUser: users,
         user: req.user
@@ -89,32 +89,82 @@ exports.getStall = (req, res, next) => {
     });
 };
 
-exports.getMyProducts = async (req, res, next) => {
+exports.getMyProducts = (req, res, next) => {
   const userId = req.user._id;
-
-  User.findById(userId, async (err, user) => {
-    let productList = [];
-    if (err) console.log(err);
-    if (user.stall) {
-      const prodArray = user.stall.products;
-      for (var i = 0; i < prodArray.length; i++) {
-        await Product.findById(prodArray[i].toJSON().prodId)
-          .then(prod => {
-            productList.push(prod);
-          })
-          .catch(err => console.log(err));
-      }
+  Product.find({ 'ofSellers.userId': userId })
+    .then(productList => {
       return res.render('ecommerce-products', {
         title: 'Sản phẩm của tôi',
         prodList: productList,
         user: req.user
       });
-    } else {
-      res.render('ecommerce-products', {
-        title: 'Sản phẩm của tôi',
-        prodList: productList,
-        user: req.user
-      });
-    }
+    })
+    .catch(err => console.log(err));
+};
+
+exports.getEditProduct = (req, res, next) => {
+  const prodId = req.params.prodId;
+  Product.findById(prodId).then(prod => {
+    Category.find({})
+      .then(cat => {
+        res.render('product-edit', {
+          title: 'Sửa sản phẩm',
+          user: req.user,
+          cat: cat,
+          prod: prod
+        });
+      })
+      .catch(err => console.log(err));
   });
+};
+
+exports.postEditProduct = (req, res, next) => {
+  let error = {};
+  const prodId = req.params.prodId;
+  const {
+    productName,
+    productDescription,
+    productMaterial,
+    productSize,
+    productType,
+    productColor,
+    productPrice,
+    radioGender,
+    productSale,
+    productTag,
+    productStock
+  } = req.body;
+  const images = req.files;
+  let imageUrl = [];
+  if (images) {
+    for (var i = 0; i < images.length; i++) {
+      imageUrl.push(images[i].filename);
+    }
+  }
+
+  const type = String(productType).split('-');
+
+  Product.findByIdAndUpdate(prodId, {
+    name: productName,
+    description: productDescription,
+    stock: productStock,
+    price: productPrice,
+    size: String(productSize)
+      .replace(/ /g, '')
+      .split(','),
+    productType: { main: type[0], sub: type[1] },
+    color: String(productColor).split(','),
+    tags: String(productTag).split(','),
+    isSale: { status: productSale > 0, percent: productSale },
+    gender: radioGender,
+    materials: String(productMaterial).split(',')
+  }).then(prod => {
+    res.redirect('/stalls');
+  });
+};
+
+exports.postDeleteProduct = (req, res, next) => {
+  let error = {};
+  const prodId = req.params.prodId;
+  Product.findByIdAndDelete(prodId).then(res.redirect('/stalls'));
 };

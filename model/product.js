@@ -71,8 +71,7 @@ const productSchema = new Schema({
   },
   labels: {
     type: String,
-    required: false,
-    default: 'Shiro'
+    required: false
   },
   materials: {
     type: [String],
