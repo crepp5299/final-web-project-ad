@@ -59,7 +59,14 @@ exports.postAddNewProduct = (req, res) => {
     ofSellers: { userId: req.user._id, name: req.user.username }
   });
 
-  newProduct.save();
+  newProduct
+    .save()
+    .then(prod => {
+      res.redirect('/stalls');
+    })
+    .catch(err => {
+      res.redirect('/stalls');
+    });
 };
 
 exports.getStall = (req, res, next) => {
