@@ -160,7 +160,9 @@ exports.postEditProduct = (req, res, next) => {
     materials: String(productMaterial).split(',')
   };
 
-  if (images) updateConfig.images = imageUrl;
+  if (imageUrl.length > 0) {
+    updateConfig.images = imageUrl;
+  }
 
   Product.findByIdAndUpdate(prodId, updateConfig).then(prod => {
     res.redirect('/stalls');
