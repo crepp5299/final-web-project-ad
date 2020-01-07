@@ -29,9 +29,7 @@ exports.postAddNewProduct = (req, res) => {
     productTag,
     productStock
   } = req.body;
-  console.log(req.body);
   const images = req.files;
-  console.log(images);
   let imageUrl = [];
   if (images) {
     for (var i = 0; i < images.length; i++) {
@@ -40,6 +38,8 @@ exports.postAddNewProduct = (req, res) => {
   }
 
   const type = String(productType).split('-');
+
+  console.log(type);
 
   const newProduct = new Product({
     name: productName,
@@ -63,7 +63,7 @@ exports.postAddNewProduct = (req, res) => {
     .save()
     .then(product => {
       User.findById(req.user._id, (err, user) => {
-        var p = { sellCount: 0, id: product._id };
+        var p = { sellCount: 0, prodId: product._id };
         let userProd = user.stall.products;
         userProd.push(p);
         user.stall.products = userProd;
@@ -73,4 +73,48 @@ exports.postAddNewProduct = (req, res) => {
       res.redirect('/');
     })
     .catch(err => console.log(err));
+};
+
+exports.getStall = (req, res, next) => {
+  User.find({ stall: { $exists: true } })
+    .then(users => {
+      res.render('ecommerce-stalls', {
+        title: 'Quản lý gian hàng',
+        allUser: users,
+        user: req.user
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+exports.getMyProducts = async (req, res, next) => {
+  const userId = req.user._id;
+
+  User.findById(userId, async (err, user) => {
+    let productList = [];
+    if (err) console.log(err);
+    if (user.stall) {
+      const prodArray = user.stall.products;
+      for (var i = 0; i < prodArray.length; i++) {
+        await Product.findById(prodArray[i].toJSON().prodId)
+          .then(prod => {
+            productList.push(prod);
+          })
+          .catch(err => console.log(err));
+      }
+      return res.render('ecommerce-products', {
+        title: 'Sản phẩm của tôi',
+        prodList: productList,
+        user: req.user
+      });
+    } else {
+      res.render('ecommerce-products', {
+        title: 'Sản phẩm của tôi',
+        prodList: productList,
+        user: req.user
+      });
+    }
+  });
 };

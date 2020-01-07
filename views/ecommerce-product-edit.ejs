@@ -113,12 +113,12 @@
 
                                                     <div class="form-group m-b-20">
                                                         <label>Phân loại <span class="text-danger">*</span></label>
-                                                        <select class="form-control" form="productContent" required>
+                                                        <select class="form-control" form="productContent" name="productType" required>
                                                             
                                                             <% cat.forEach(function(item) { %>
                                                                 <optgroup label="<%= item.name %>">
                                                                     <% item.childName.forEach(function(child) { %>
-                                                                    <option value="<%= item.name %>-<%= child %>" name="productType"><%= child %></option>
+                                                                    <option form="productContent" value="<%= item.name %>-<%= child %>" name="productType"><%= child %></option>
                                                                     <% }) %>
                                                                 </optgroup>
                                                             <% }) %>
