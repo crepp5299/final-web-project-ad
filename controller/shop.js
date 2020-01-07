@@ -1,12 +1,12 @@
-const User = require('../model/user');
-const Category = require('../model/productCategory');
-const Product = require('../model/product');
-const Order = require('../model/order');
+const User = require("../model/user");
+const Category = require("../model/productCategory");
+const Product = require("../model/product");
+const Order = require("../model/order");
 exports.getAddNewProduct = (req, res) => {
   Category.find({})
     .then(cat => {
-      res.render('ecommerce-product-edit', {
-        title: 'Thêm sản phẩm',
+      res.render("ecommerce-product-edit", {
+        title: "Thêm sản phẩm",
         user: req.user,
         cat: cat
       });
@@ -37,7 +37,7 @@ exports.postAddNewProduct = (req, res) => {
     }
   }
 
-  const type = String(productType).split('-');
+  const type = String(productType).split("-");
 
   console.log(type);
 
@@ -47,15 +47,15 @@ exports.postAddNewProduct = (req, res) => {
     stock: productStock,
     price: productPrice,
     size: String(productSize)
-      .replace(/ /g, '')
-      .split(','),
+      .replace(/ /g, "")
+      .split(","),
     productType: { main: type[0], sub: type[1] },
-    color: String(productColor).split(','),
-    tags: String(productTag).split(','),
+    color: String(productColor).split(","),
+    tags: String(productTag).split(","),
     isSale: { status: productSale > 0, percent: productSale },
     gender: radioGender,
     images: imageUrl,
-    materials: String(productMaterial).split(','),
+    materials: String(productMaterial).split(","),
     ofSellers: { userId: req.user._id, name: req.user.username }
   });
 
@@ -68,18 +68,20 @@ exports.getStall = (req, res, next) => {
       let userArray = [];
       for (var i = 0; i < users.length; i++) {
         let userObj = {};
-        await Product.find({ 'ofSellers.userId': users[i]._id }).then(products => {
-          users[i].prodCount = products.length;
-          var sell = 0;
-          for (var j = 0; j < products.length; j++) {
-            sell += Number(products[j].buyCounts);
+        await Product.find({ "ofSellers.userId": users[i]._id }).then(
+          products => {
+            users[i].prodCount = products.length;
+            var sell = 0;
+            for (var j = 0; j < products.length; j++) {
+              sell += Number(products[j].buyCounts);
+            }
+            users[i].sellCount = sell;
           }
-          users[i].sellCount = sell;
-        });
+        );
       }
 
-      return res.render('ecommerce-stalls', {
-        title: 'Quản lý gian hàng',
+      return res.render("ecommerce-stalls", {
+        title: "Quản lý gian hàng",
         allUser: users,
         user: req.user
       });
@@ -91,10 +93,10 @@ exports.getStall = (req, res, next) => {
 
 exports.getMyProducts = (req, res, next) => {
   const userId = req.user._id;
-  Product.find({ 'ofSellers.userId': userId })
+  Product.find({ "ofSellers.userId": userId })
     .then(productList => {
-      return res.render('ecommerce-products', {
-        title: 'Sản phẩm của tôi',
+      return res.render("ecommerce-products", {
+        title: "Sản phẩm của tôi",
         prodList: productList,
         user: req.user
       });
@@ -107,8 +109,8 @@ exports.getEditProduct = (req, res, next) => {
   Product.findById(prodId).then(prod => {
     Category.find({})
       .then(cat => {
-        res.render('product-edit', {
-          title: 'Sửa sản phẩm',
+        res.render("product-edit", {
+          title: "Sửa sản phẩm",
           user: req.user,
           cat: cat,
           prod: prod
@@ -142,7 +144,7 @@ exports.postEditProduct = (req, res, next) => {
     }
   }
 
-  const type = String(productType).split('-');
+  const type = String(productType).split("-");
 
   var updateConfig = {
     name: productName,
@@ -150,14 +152,14 @@ exports.postEditProduct = (req, res, next) => {
     stock: productStock,
     price: productPrice,
     size: String(productSize)
-      .replace(/ /g, '')
-      .split(','),
+      .replace(/ /g, "")
+      .split(","),
     productType: { main: type[0], sub: type[1] },
-    color: String(productColor).split(','),
-    tags: String(productTag).split(','),
+    color: String(productColor).split(","),
+    tags: String(productTag).split(","),
     isSale: { status: productSale > 0, percent: productSale },
     gender: radioGender,
-    materials: String(productMaterial).split(',')
+    materials: String(productMaterial).split(",")
   };
 
   if (imageUrl.length > 0) {
@@ -165,20 +167,20 @@ exports.postEditProduct = (req, res, next) => {
   }
 
   Product.findByIdAndUpdate(prodId, updateConfig).then(prod => {
-    res.redirect('/stalls');
+    res.redirect("/stalls");
   });
 };
 
 exports.postDeleteProduct = (req, res, next) => {
   let error = {};
   const prodId = req.params.prodId;
-  Product.findByIdAndDelete(prodId).then(res.redirect('/stalls'));
+  Product.findByIdAndDelete(prodId).then(res.redirect("/stalls"));
 };
 
 exports.getOrder = (req, res) => {
-  Order.find({ 'cart.numItems': { $gt: 0 } }).then(listOrders => {
-    return res.render('orders', {
-      title: 'Quản lý Đơn Hàng',
+  Order.find({ "cart.numItems": { $gt: 0 } }).then(listOrders => {
+    return res.render("orders", {
+      title: "Quản lý Đơn Hàng",
       orders: listOrders,
       user: req.user
     });
@@ -186,19 +188,51 @@ exports.getOrder = (req, res) => {
 };
 
 exports.getDashboard = (req, res) => {
-  Product.find({})
-    .sort({ buyCounts: 'desc' })
-    .limit(10)
-    .then(topten => {
-      Product.find({})
-        .sort({ buyCounts: 'desc' })
-        .limit(10)
-        .then(topten => {
-          return res.render('ecommerce-dashboard', {
-            title: 'Quản lý Đơn Hàng',
-            user: req.user,
-            top10product: topten
-          });
-        });
+  var date = new Date();
+  var totalIncom = 0;
+  var Incom = 0;
+  var yearIncom = 0;
+  var monthIncom = 0;
+  var totalOrder = 0;
+  Order.find({}).then(orders => {
+    orders.forEach(function(order) {
+      if (order) {
+        totalOrder++;
+        totalIncom += order.cart.totalPrice;
+        if (
+          order.date.getDate() == date.getDate() &&
+          order.date.getMonth() == date.getMonth() &&
+          order.date.getYear() == date.getYear()
+        ) {
+          Incom += order.cart.totalPrice;
+        }
+        if (
+          order.date.getMonth() == date.getMonth() &&
+          order.date.getYear() == date.getYear()
+        ) {
+          monthIncom += order.cart.totalPrice;
+        }
+        if (order.date.getYear() == date.getYear()) {
+          yearIncom += order.cart.totalPrice;
+        }
+      }
     });
+    Product.find({})
+      .sort({ buyCounts: "desc" })
+      .limit(10)
+      .then(topten => {
+        Product.find({})
+          .sort({ buyCounts: "desc" })
+          .limit(10)
+          .then(topten => {
+            return res.render("ecommerce-dashboard", {
+              title: "Quản lý Đơn Hàng",
+              user: req.user,
+              top10product: topten,
+              totalIncom: totalIncom,
+              totalOrder: totalOrder
+            });
+          });
+      });
+  });
 };
