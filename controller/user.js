@@ -97,20 +97,36 @@ exports.postEditUser = (req, res, next) => {
     });
 };
 
-exports.deleteUser = (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
   const userId = req.params.userId;
-  Users.deleteOne({ _id: userId }).then(res.redirect('/users'));
+  let deleteRole = 2;
+  await Users.findById(userId).then(user => {
+    deleteRole = user.role;
+  });
+  if (req.user.role && req.user.role > deleteRole) {
+    Users.deleteOne({ _id: userId }).then(res.redirect('back'));
+  } else {
+    return res.redirect('back');
+  }
 };
 
-exports.lockUser = (req, res, next) => {
+exports.lockUser = async (req, res, next) => {
   const userId = req.params.userId;
   if (userId == req.user._id) return res.redirect('back');
-  Users.findOne({ _id: userId })
-    .then(user => {
-      user.isLock = true;
-      user.save();
-    })
-    .then(res.redirect('back'));
+  let deleteRole = 2;
+  await Users.findById(userId).then(user => {
+    deleteRole = user.role;
+  });
+  if (req.user.role && req.user.role > deleteRole) {
+    Users.findById({ userId })
+      .then(user => {
+        user.isLock = true;
+        user.save();
+      })
+      .then(res.redirect('back'));
+  } else {
+    return res.redirect('back');
+  }
 };
 
 exports.unlockUser = (req, res, next) => {
