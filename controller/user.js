@@ -99,11 +99,7 @@ exports.postEditUser = (req, res, next) => {
 
 exports.deleteUser = async (req, res, next) => {
   const userId = req.params.userId;
-  let deleteRole = 2;
-  await Users.findById(userId).then(user => {
-    deleteRole = user.role;
-  });
-  if (req.user.role && req.user.role > deleteRole) {
+  if (userId != req.user._id) {
     Users.deleteOne({ _id: userId }).then(res.redirect('back'));
   } else {
     return res.redirect('back');
@@ -112,20 +108,14 @@ exports.deleteUser = async (req, res, next) => {
 
 exports.lockUser = async (req, res, next) => {
   const userId = req.params.userId;
-  if (userId == req.user._id) return res.redirect('back');
-  let deleteRole = 2;
-  await Users.findById(userId).then(user => {
-    deleteRole = user.role;
-  });
-  if (req.user.role && req.user.role > deleteRole) {
-    Users.findById({ userId })
+  if (userId == req.user.id) return res.redirect('back');
+  else {
+    Users.findById(userId)
       .then(user => {
         user.isLock = true;
         user.save();
       })
       .then(res.redirect('back'));
-  } else {
-    return res.redirect('back');
   }
 };
 
